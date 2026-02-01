@@ -1,0 +1,17 @@
+{
+  "name": "meter",
+  "version": "1.0.0",
+  "description": "Meter will help you track your browsing time daily and be more productive :>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/chrome": "^0.1.36",
+    "typescript": "^5.9.3"
+  }
+}

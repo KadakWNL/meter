@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Meter",
+  "description": "Track time spent per website, daily.",
+  "version": "0.1",
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+
+  "permissions": [
+    "tabs",
+    "storage",
+    "idle"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}

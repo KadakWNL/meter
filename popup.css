@@ -1,0 +1,9 @@
+body {
+  font-family: system-ui, sans-serif;
+  padding: 12px;
+  width: 300px;
+}
+
+h2 {
+  margin-top: 0;
+}
