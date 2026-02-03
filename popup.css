@@ -83,6 +83,58 @@ h2 {
   margin-top: 8px;
 }
 
+.date-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  width: 32px;
+  height: 32px;
+}
+
+.nav-button:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+.nav-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.nav-button:disabled:hover {
+  background: transparent;
+  border-color: var(--border);
+}
+
+.nav-button svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--text-primary);
+}
+
+.current-date {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 150px;
+  text-align: center;
+}
+
 .domains-list {
   padding: 16px;
   max-height: 400px;

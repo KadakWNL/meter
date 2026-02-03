@@ -4,7 +4,10 @@ interface DomainTimeData {
 
 type Theme = "light" | "dark" | "system";
 
-// manage themes
+// current selected date (default to today)
+let selectedDate: Date = new Date();
+
+// Theme management
 function getSystemTheme(): "light" | "dark" {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
@@ -63,15 +66,34 @@ function formatTime(seconds: number): string {
   }
 }
 
-// get date
-function getTodayKey(): string {
-  const today = new Date();
-  return today.toISOString().split("T")[0];
+// Get date key in YYYY-MM-DD format
+function getDateKey(date: Date): string {
+  return date.toISOString().split("T")[0];
 }
 
-// Load and display today's data
-async function loadTodayData() {
-  const key = getTodayKey();
+// Format date for display
+function formatDateDisplay(date: Date): string {
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  
+  const dateKey = getDateKey(date);
+  const todayKey = getDateKey(today);
+  const yesterdayKey = getDateKey(yesterday);
+  
+  if (dateKey === todayKey) return "Today";
+  if (dateKey === yesterdayKey) return "Yesterday";
+  
+  return date.toLocaleDateString("en-US", { 
+    month: "short", 
+    day: "numeric", 
+    year: date.getFullYear() !== today.getFullYear() ? "numeric" : undefined 
+  });
+}
+
+// Load and display data for selected date
+async function loadDateData() {
+  const key = getDateKey(selectedDate);
   const result = await chrome.storage.local.get(key);
   const dayData: DomainTimeData = (result[key] as DomainTimeData) || {};
 
@@ -93,7 +115,7 @@ async function loadTodayData() {
 
   // display domains
   if (sortedDomains.length === 0) {
-    domainsListDiv.innerHTML = '<div class="no-data">No activity tracked yet today.<br>Start browsing!</div>';
+    domainsListDiv.innerHTML = '<div class="no-data">No activity tracked yet.<br>Start browsing!</div>';
     return;
   }
 
@@ -119,10 +141,61 @@ async function loadTodayData() {
   });
 }
 
+// get all dates with activity from storage
+async function getActiveDates(): Promise<Set<string>> {
+  const allData = await chrome.storage.local.get(null);
+  const activeDates = new Set<string>();
+  
+  for (const key in allData) {
+    // check if key is a valid date format (YYYY-MM-DD)
+    if (/^\d{4}-\d{2}-\d{2}$/.test(key)) {
+      activeDates.add(key);
+    }
+  }
+  
+  return activeDates;
+}
+
+// update date display and button states
+function updateDateDisplay() {
+  const currentDateDiv = document.getElementById("current-date");
+  const nextDateBtn = document.getElementById("next-date") as HTMLButtonElement;
+  
+  if (currentDateDiv) {
+    currentDateDiv.textContent = formatDateDisplay(selectedDate);
+  }
+  
+  // disable next button if selected date is today or in the future
+  const today = new Date();
+  const isToday = getDateKey(selectedDate) >= getDateKey(today);
+  if (nextDateBtn) {
+    nextDateBtn.disabled = isToday;
+  }
+}
+
 // load data when popup opens
 loadTheme();
-loadTodayData();
+loadDateData();
+updateDateDisplay();
 
+// date navigation
+const prevDateBtn = document.getElementById("prev-date");
+const nextDateBtn = document.getElementById("next-date");
+const datePicker = document.getElementById("date-picker") as HTMLInputElement;
+
+prevDateBtn?.addEventListener("click", () => {
+  selectedDate.setDate(selectedDate.getDate() - 1);
+  loadDateData();
+  updateDateDisplay();
+});
+
+nextDateBtn?.addEventListener("click", () => {
+  selectedDate.setDate(selectedDate.getDate() + 1);
+  loadDateData();
+  updateDateDisplay();
+});
+
+// theme toggle button listener
 const themeToggle = document.getElementById("theme-toggle");
 themeToggle?.addEventListener("click", cycleTheme);
 
@@ -140,7 +213,11 @@ chrome.storage.onChanged.addListener((changes, areaName) => {
     if (changes.theme) {
       loadTheme();
     } else {
-      loadTodayData();
+      // Only reload if the changed key matches selected date
+      const selectedKey = getDateKey(selectedDate);
+      if (changes[selectedKey]) {
+        loadDateData();
+      }
     }
   }
 });
