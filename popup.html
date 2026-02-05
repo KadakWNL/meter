@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="popup.css" />
+    <script src="libs/chart.umd.js"></script>
   </head>
   <body>
     <div class="header">
@@ -29,7 +30,6 @@
           <line x1="12" y1="17" x2="12" y2="21"></line>
         </svg>
       </button>
-      <div id="total-time" class="total-time">Loading...</div>
     </div>
     
     <div class="date-navigation">
@@ -46,10 +46,18 @@
       </button>
     </div>
     
+    <div class="chart-container">
+      <canvas id="time-chart"></canvas>
+      <div class="chart-center">
+        <div class="chart-center-label">Total Time</div>
+        <div id="chart-center-text">0m 0s</div>
+      </div>
+    </div>
+    
     <div id="domains-list" class="domains-list">
       <!-- domain entries here -->
     </div>
 
-    <script src="dist/popup.js"></script>
+    <script type="module" src="dist/popup.js"></script>
   </body>
 </html>

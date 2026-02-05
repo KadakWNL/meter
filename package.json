@@ -4,6 +4,8 @@
   "description": "Meter will help you track your browsing time daily and be more productive :>",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
