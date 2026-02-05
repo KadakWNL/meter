@@ -4,6 +4,12 @@
   "description": "Track time spent per website, daily.",
   "version": "0.1",
 
+  "icons": {
+    "16": "src/logo.png",
+    "48": "src/logo.png",
+    "128": "src/logo.png"
+  },
+
   "action": {
     "default_popup": "popup.html"
   },
