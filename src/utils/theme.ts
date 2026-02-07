@@ -17,6 +17,11 @@ export async function loadTheme() {
 export function applyTheme(theme: Theme) {
   const effectiveTheme = theme === "system" ? getSystemTheme() : theme;
   document.body.setAttribute("data-theme", effectiveTheme);
+  
+  // Force repaint for scrollbar update
+  document.body.style.display = 'none';
+  document.body.offsetHeight; // Trigger reflow
+  document.body.style.display = '';
 }
 
 // update which icon is shown in the theme toggle button

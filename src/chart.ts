@@ -1,5 +1,5 @@
-import { getCurrentTheme } from "./theme.js";
-import { formatTime } from "./dateUtils.js";
+import { getCurrentTheme } from "./utils/theme.js";
+import { formatTime } from "./utils/dateUtils.js";
 
 export interface DomainTimeData {
   [domain: string]: number;
@@ -75,9 +75,9 @@ export function renderChart(dayData: DomainTimeData) {
         datasets: [{
           data: data,
           backgroundColor: chartColors,
-          borderWidth: 4,
+          borderWidth: 3,
           borderColor: isDark ? "#1e1e1e" : "#f5f5f5",
-          spacing: 4,
+          spacing: 1,
         }]
       },
       options: {

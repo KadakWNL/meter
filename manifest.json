@@ -2,12 +2,12 @@
   "manifest_version": 3,
   "name": "Meter",
   "description": "Track time spent per website, daily.",
-  "version": "0.1",
+  "version": "0.2",
 
   "icons": {
-    "16": "src/logo.png",
-    "48": "src/logo.png",
-    "128": "src/logo.png"
+    "16": "src/resources/logo.png",
+    "48": "src/resources/logo.png",
+    "128": "src/resources/logo.png"
   },
 
   "action": {
@@ -17,6 +17,11 @@
   "background": {
     "service_worker": "dist/background.js",
     "type": "module"
+  },
+
+  "options_ui": {
+    "page": "settings.html",
+    "open_in_tab": true
   },
 
   "permissions": [

@@ -1,6 +1,6 @@
-import { loadTheme, cycleTheme, applyTheme } from "./theme.js";
+import { loadTheme, cycleTheme, applyTheme } from "./utils/theme.js";
 import { renderChart, DomainTimeData } from "./chart.js";
-import { formatTime, getDateKey, formatDateDisplay } from "./dateUtils.js";
+import { formatTime, getDateKey, formatDateDisplay } from "./utils/dateUtils.js";
 
 // keep track of what date we're looking at (starts with today)
 let selectedDate: Date = new Date();
@@ -91,20 +91,10 @@ nextDateBtn?.addEventListener("click", () => {
   updateDateDisplay();
 });
 
-// theme toggle button
-const themeToggle = document.getElementById("theme-toggle");
-themeToggle?.addEventListener("click", async () => {
-  await cycleTheme();
-  loadDateData(); // reload to update chart border color
-});
-
-// listen for system theme changes
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", async () => {
-  const result = await chrome.storage.local.get("theme");
-  if (result.theme === "system") {
-    applyTheme("system");
-    loadDateData(); // reload to update chart border color
-  }
+// settings button
+const settingsBtn = document.getElementById("settings-btn");
+settingsBtn?.addEventListener("click", () => {
+  chrome.tabs.create({ url: chrome.runtime.getURL("settings.html") });
 });
 
 // listen for storage changes and update UI

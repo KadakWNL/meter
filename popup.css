@@ -32,6 +32,26 @@ body {
   background: var(--bg-secondary);
   color: var(--text-primary);
   transition: background-color 0.3s, color 0.3s;
+  overflow-y: auto;
+}
+
+/* Main scrollbar theme-aware */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 .header {
@@ -51,14 +71,14 @@ h2 {
   font-family: 'JetBrains Mono', monospace;
 }
 
-.theme-toggle {
+.settings-btn {
   position: absolute;
   top: 16px;
   right: 16px;
   background: rgba(255, 255, 255, 0.2);
   border: none;
   border-radius: 8px;
-  padding: 8px;
+  padding: 6px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -66,18 +86,14 @@ h2 {
   transition: background-color 0.2s;
 }
 
-.theme-toggle:hover {
+.settings-btn:hover {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.theme-icon {
-  width: 20px;
-  height: 20px;
-  color: var(--text-inverse);
-}
-
-.theme-icon.hidden {
-  display: none;
+.settings-btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: white;
 }
 
 .total-time {
@@ -175,6 +191,26 @@ h2 {
   padding: 16px;
   max-height: 400px;
   overflow-y: auto;
+}
+
+/* theme-aware scrollbar */
+.domains-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.domains-list::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+.domains-list::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.domains-list::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 .domain-item {
