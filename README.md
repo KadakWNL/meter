@@ -1,6 +1,16 @@
 ## Meter
+<p align="center">
+  <img src="src/resources/logo.png" alt="Meter Logo" width="160">
+</p>
 Meter will help you track your browsing time daily and be more productive :>
 
+## Screenshots
+
+### Popup
+![Popup](src/resources/popup.png)
+
+### Settings Page
+![Settings Page](src/resources/settings.png)
 
 ## Setup & Installation
 
