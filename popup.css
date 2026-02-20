@@ -29,6 +29,7 @@ body {
   padding: 0;
   margin: 0;
   width: 360px;
+  max-height: 600px;
   background: var(--bg-secondary);
   color: var(--text-primary);
   transition: background-color 0.3s, color 0.3s;
@@ -189,28 +190,6 @@ h2 {
 
 .domains-list {
   padding: 16px;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-/* theme-aware scrollbar */
-.domains-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.domains-list::-webkit-scrollbar-track {
-  background: var(--bg-secondary);
-  border-radius: 4px;
-}
-
-.domains-list::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-
-.domains-list::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
 }
 
 .domain-item {

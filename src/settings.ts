@@ -323,6 +323,17 @@ function setupActionButtons() {
       }
     });
   }
+
+  // reload extension
+  const reloadExtensionBtn = document.getElementById('reload-extension-btn');
+  if (reloadExtensionBtn) {
+    reloadExtensionBtn.addEventListener('click', () => {
+      showNotification('info', 'Reloading Extension', 'Extension will reload in a moment...');
+      setTimeout(() => {
+        chrome.runtime.reload();
+      }, 500);
+    });
+  }
 }
 
 // listen for changes from other tabs/popup
