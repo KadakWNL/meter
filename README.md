@@ -6,11 +6,15 @@ Meter will help you track your browsing time daily and be more productive :>
 
 ## Screenshots
 
-### Popup
-![Popup](src/resources/popup.png)
+<p align="center">
+  <b>Popup</b><br>
+  <img src="src/resources/popup.png" alt="Popup" width="300">
+</p>
 
-### Settings Page
-![Settings Page](src/resources/settings.png)
+<p align="center">
+  <b>Settings Page</b><br>
+  <img src="src/resources/settings.png" alt="Settings Page" width="550">
+</p>
 
 ## Setup & Installation
 
