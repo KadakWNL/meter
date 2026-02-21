@@ -334,6 +334,14 @@ function setupActionButtons() {
       }, 500);
     });
   }
+
+  // open extensions page
+  const openExtensionsBtn = document.getElementById('open-extensions-btn');
+  if (openExtensionsBtn) {
+    openExtensionsBtn.addEventListener('click', () => {
+      chrome.tabs.create({ url: 'chrome://extensions/' });
+    });
+  }
 }
 
 // listen for changes from other tabs/popup

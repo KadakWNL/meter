@@ -116,7 +116,7 @@ h1 {
   border: 2px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s;
+  /* transition: all 0.2s; */
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   color: var(--text-primary);
@@ -499,15 +499,17 @@ h1 {
 
 
 /* Animation for saved state */
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
+@keyframes savedConfirm {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.6;
   }
-  50% {
-    transform: scale(1.05);
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 .saved {
-  animation: pulse 0.3s ease-in-out;
+  animation: savedConfirm 160ms ease-out;
 }

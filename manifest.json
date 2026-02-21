@@ -24,14 +24,6 @@
     "open_in_tab": true
   },
 
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["dist/content.js"],
-      "run_at": "document_idle"
-    }
-  ],
-
   "permissions": [
     "tabs",
     "storage",
